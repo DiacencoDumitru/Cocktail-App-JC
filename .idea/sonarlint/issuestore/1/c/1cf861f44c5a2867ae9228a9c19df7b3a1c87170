@@ -1,0 +1,20 @@
+
+n
+java:S2095*"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(†Š«£şÿÿÿÿ8ğˆÔí¥2
+j
+java:S2095œ"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(©ÿİØ8˜°”í¥2
+G	java:S106d"+Replace this use of System.out by a logger.(¾äÔ‹8÷ˆÔí¥2
+G	java:S106e"+Replace this use of System.out by a logger.(ŠĞÛ¼8øˆÔí¥2
+L	java:S106f"+Replace this use of System.out by a logger.(˜±¥…úÿÿÿÿ8øˆÔí¥2
+G	java:S106g"+Replace this use of System.out by a logger.(áì¨ó8øˆÔí¥2
+L	java:S106h"+Replace this use of System.out by a logger.(ªÄÒÎùÿÿÿÿ8øˆÔí¥2
+G	java:S106m"+Replace this use of System.out by a logger.(ÛŠº»8úˆÔí¥2
+G	java:S106q"+Replace this use of System.out by a logger.(İôõ8ûˆÔí¥2
+G	java:S106u"+Replace this use of System.out by a logger.(·ÏÉ8ûˆÔí¥2
+L	java:S106w"+Replace this use of System.out by a logger.(°ö¼äıÿÿÿÿ8ûˆÔí¥2
+G	java:S106y"+Replace this use of System.out by a logger.(©ºİ€8ûˆÔí¥2
+:
+java:S2119~"Save and re-use this "Random".(¼İÅf8üˆÔí¥2
+H	java:S106“"+Replace this use of System.out by a logger.(é‘İµ8ÿˆÔí¥2
+H	java:S106•"+Replace this use of System.out by a logger.(Ô‚È÷8ÿˆÔí¥2
+M	java:S106—"+Replace this use of System.out by a logger.(ÔÎ¢ñúÿÿÿÿ8ÿˆÔí¥2
