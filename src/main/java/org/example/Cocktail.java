@@ -15,18 +15,18 @@ public class Cocktail {
     private double mass;
     private String color;
 
+    // Конструктор по умолчанию (устанавливает стандартные значения при создании нового объекта данного класса)
     public Cocktail() {
         this.numIngredients = 0;
-        this.alcoholContent = new ArrayList<>();
         this.alcoholContent = new ArrayList<>();
         this.price = 0.0;
         cocktailCount++;
     }
 
     public Cocktail(int numIngredients, List<Double> alcoholContent, double price) {
-        this.numIngredients = numIngredients;
-        this.alcoholContent = alcoholContent;
-        this.price = price;
+        this.setNumIngredients(numIngredients);
+        this.setAlcoholContent(alcoholContent);
+        this.setPrice(price);
     }
 
     public Cocktail(Cocktail other) {
@@ -57,6 +57,9 @@ public class Cocktail {
     }
 
     public void setNumIngredients(int numIngredients) {
+        if (numIngredients <= 0) {
+            throw new IllegalArgumentException("Количество ингредиентов должно быть больше 0");
+        }
         this.numIngredients = numIngredients;
     }
 
@@ -64,7 +67,16 @@ public class Cocktail {
         return alcoholContent;
     }
 
+    // Во всех сеттерах выполняется проверка корректности данных, чтобы избежать некорректной работы приложения
     public void setAlcoholContent(List<Double> alcoholContent) {
+        if (alcoholContent == null || alcoholContent.isEmpty()) {
+            throw new IllegalArgumentException("Содержание алкоголя не должно быть пустым");
+        }
+        for (Double alcohol : alcoholContent) {
+            if (alcohol < 0 || alcohol > 100) {
+                throw new IllegalArgumentException("Содержание алкоголя должно быть в диапазоне от 0 до 100");
+            }
+        }
         this.alcoholContent = alcoholContent;
     }
 
@@ -73,6 +85,9 @@ public class Cocktail {
     }
 
     public void setPrice(double price) {
+        if (price <= 0) {
+            throw new IllegalArgumentException("Цена должна быть больше 0");
+        }
         this.price = price;
     }
 
@@ -85,6 +100,9 @@ public class Cocktail {
     }
 
     public void setMass(double mass) {
+        if (mass <= 0) {
+            throw new IllegalArgumentException("Масса должна быть больше 0");
+        }
         this.mass = mass;
     }
 
@@ -93,45 +111,47 @@ public class Cocktail {
     }
 
     public void setColor(String color) {
+        if (color == null || color.trim().isEmpty()) {
+            throw new IllegalArgumentException("Цвет не должен быть пустым");
+        }
         this.color = color;
     }
 
     public void printRecipe() {
-        System.out.println("Number of ingredients: " + numIngredients);
-        System.out.println("Alcohol content: " + alcoholContent);
-        System.out.println("Price: " + price + " MDL");
-        System.out.println("Mass: " + mass);
-        System.out.println("Color: " + color);
+        System.out.println("Количество ингредиентов: " + numIngredients);
+        System.out.println("Содержание алкоголя: " + alcoholContent);
+        System.out.println("Цена: " + price + " MDL");
+        System.out.println("Масса: " + mass);
+        System.out.println("Цвет: " + color);
     }
 
     public void inputCocktail() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter number of ingredients");
-        this.numIngredients = scanner.nextInt();
+        System.out.println("Введите количество ингредиентов:");
+        this.setNumIngredients(scanner.nextInt());
         this.alcoholContent = new ArrayList<>();
         for (int i = 0; i < numIngredients; i++) {
-            System.out.println("Enter alcohol content of ingredient " + (i + 1) + ": ");
+            System.out.println("Введите содержание алкоголя для ингредиента " + (i + 1) + ": ");
             this.alcoholContent.add(scanner.nextDouble());
-
         }
-        System.out.print("Enter price: ");
-        this.price = scanner.nextDouble();
-        System.out.print("Enter mass: ");
-        this.mass = scanner.nextDouble();
-        System.out.print("Enter color: ");
-        this.color = scanner.next();
+        System.out.print("Введите цену: ");
+        this.setPrice(scanner.nextDouble());
+        System.out.print("Введите массу: ");
+        this.setMass(scanner.nextDouble());
+        System.out.print("Введите цвет: ");
+        this.setColor(scanner.next());
     }
 
     public void randomizeCocktail() {
         Random random = new Random();
-        this.numIngredients = random.nextInt(5) + 1; // от 1 до 5
+        this.setNumIngredients(random.nextInt(5) + 1);
         this.alcoholContent = new ArrayList<>();
         for (int i = 0; i < numIngredients; i++) {
-            this.alcoholContent.add(random.nextDouble() * 50); // процент алкоголя
+            this.alcoholContent.add(random.nextDouble() * 50);
         }
-        this.price = random.nextDouble() * 100;
-        this.mass = random.nextDouble() * 500;
-        this.color = "Color" + random.nextInt(5);
+        this.setPrice(random.nextDouble() * 100);
+        this.setMass(random.nextDouble() * 500);
+        this.setColor("Цвет" + random.nextInt(5));
     }
 
     public boolean compareIngredients(Cocktail other) {
@@ -144,11 +164,11 @@ public class Cocktail {
 
     public static void client(double wallet, Cocktail cocktail) {
         int canBuy = (int) (wallet / cocktail.price);
-        System.out.println("Client can buy " + canBuy + " cocktails.");
+        System.out.println("Клиент может купить " + canBuy + " коктейлей.");
         if (cocktail.calculateAverageAlcohol() > 40) {
-            System.out.println("That's strong! I can handle only" + canBuy);
+            System.out.println("Это крепко! Я справлюсь только с " + canBuy);
         } else {
-            System.out.println("Delicious! I'll have " + canBuy);
+            System.out.println("Вкусно! Я возьму " + canBuy);
         }
     }
 

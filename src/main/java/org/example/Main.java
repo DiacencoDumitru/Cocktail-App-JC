@@ -9,10 +9,21 @@ public class Main {
         Cocktail cocktail2 = new Cocktail(3, Arrays.asList(20.0, 30.0, 40.0), 50.0);
         Cocktail cocktail3 = new Cocktail(cocktail2);
 
+        // Получаем значение из статического метода класса Cocktail
+        int staticMethodCocktail = Cocktail.getCocktailCount();
+        System.out.println("Количество коктейлей (из статического метода): " + staticMethodCocktail);
+
+        // Создаём массив и добавляем реализацию значений класса по умолчанию для каждого из 6
+        Cocktail[] cocktails = new Cocktail[6];
+        for (int i = 0; i < cocktails.length; i++) {
+            cocktails[i] = new Cocktail();
+        }
+        System.out.println("Массив коктейлей: " + Arrays.toString(cocktails));
+
         cocktail1.printRecipe();
-        System.out.println("Average alcohol: " + cocktail1.calculateAverageAlcohol() + "\n");
+        System.out.println("Среднее содержание алкоголя: " + cocktail1.calculateAverageAlcohol() + "\n");
         cocktail2.printRecipe();
-        System.out.println("Average alcohol: " + cocktail2.calculateAverageAlcohol() + "\n");
+        System.out.println("Среднее содержание алкоголя: " + cocktail2.calculateAverageAlcohol() + "\n");
 
         cocktail1.randomizeCocktail();
         cocktail1.printRecipe();
@@ -20,7 +31,7 @@ public class Main {
         cocktail3.printRecipe();
         System.out.println("\n");
 
-        System.out.println("Cocktail1 and Cocktail2 have the same number of ingredients: " + cocktail1.compareIngredients(cocktail2));
+        System.out.println("Коктейль 1 и Коктейль 2 имеют одинаковое количество ингредиентов: " + cocktail1.compareIngredients(cocktail2));
 
         Cocktail.client(100, cocktail2);
 
@@ -28,6 +39,6 @@ public class Main {
         cocktail2.saveToFile("cocktail2.txt");
         cocktail3.saveToFile("cocktail3.txt");
 
-        System.out.println("Total cocktails created: " + Cocktail.getCocktailCount());
+        System.out.println("Общее количество созданных коктейлей: " + Cocktail.getCocktailCount());
     }
 }
